@@ -5,6 +5,7 @@ import sqlalchemy
 from sqlalchemy import *
 import models
 from os import getenv
+from sqlalchemy.orm import relationship
 
 
 class Place(BaseModel, Base):
