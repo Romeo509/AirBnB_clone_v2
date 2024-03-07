@@ -17,7 +17,8 @@ def do_pack():
     file_name = "versions/web_static_{}.tgz".format(time)
     try:
         local("mkdir -p ./versions")
-        local("tar --create --verbose -z --file={} ./web_static".format(file_name))
+        local("tar --create --verbose -z --file={} ./web_static"
+              .format(file_name))
         return file_name
     except:
         return None
@@ -31,20 +32,20 @@ def do_deploy(archive_path):
         return False
     try:
         archive = archive_path.split("/")[-1]
-        path = "/data/web_static/releases"
-        put("{}".format(archive_path), "/tmp/{}".format(archive))
-        folder = archive.split(".")
-        run("mkdir -p {}/{}/".format(path, folder[0]))
-        new_archive = '.'.join(folder)
-        run("tar -xzf /tmp/{} -C {}/{}/"
-            .format(new_archive, path, folder[0]))
+        path = "/data/web_static/releases/{}"
+        name = archive.split(".")[0]
+        put(archive_path, "/tmp/{}".format(archive))
+        run("rm -rf /data/web_static/releases/{}/".format(name))
+        run("mkdir -p /data/web_static/releases/{}/".format(name))
+        run("tar -xzf /tmp/{} -C /data/web_static/releases/{}/"
+            .format(archive, name))
         run("rm /tmp/{}".format(archive))
-        run("mv {}/{}/web_static/* {}/{}/"
-            .format(path, folder[0], path, folder[0]))
-        run("rm -rf {}/{}/web_static".format(path, folder[0]))
+        run("mv /data/web_static/releases/{}/web_static/* "
+            "/data/web_static/releases/{}/".format(name, name))
+        run("rm -rf /data/web_static/releases/{}/web_static".format(name))
         run("rm -rf /data/web_static/current")
-        run("ln -s {}/{} /data/web_static/current"
-            .format(path, folder[0]))
+        run("ln -s /data/web_static/releases/{}/ /data/web_static/current"
+            .format(name))
         return True
     except:
         return False
