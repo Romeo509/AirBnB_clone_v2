@@ -12,7 +12,7 @@ def do_deploy(archive_path):
     """ Return True if the operation has been correctly done
     or False if the archive_path doesn't exist
     """
-    if os.path.isfile(archive_path) is None:
+    if os.path.isfile(archive_path) is False:
         return False
     try:
         archive = archive_path.split("/")[-1]
