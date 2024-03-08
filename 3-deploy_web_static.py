@@ -7,7 +7,7 @@ from fabric.operations import *
 import os
 from datetime import datetime
 
-env.hosts = ['107.22.146.121', '52.91.133.213']
+env.hosts = ['100.26.132.7', '107.23.95.221']
 created_path = None
 
 

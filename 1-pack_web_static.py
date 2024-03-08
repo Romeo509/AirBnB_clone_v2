@@ -1,7 +1,9 @@
 #!/usr/bin/python3
-""" Fabric script that generates a .tgz archive
-from the contents of the web_static folder of
-your AirBnB Clone repo, using the function do_pack
+""" Develop a Fabric script featuring the 'do_pack' function to create
+a .tgz archive from 'web_static' in your AirBnB Clone repo.
+The archive, named 'web_static_<timestamp>.tgz',is stored in the
+'versions' folder. 'do_pack' returns the archive path on success,
+or None on failure.
 """
 from datetime import datetime
 from fabric.api import local
