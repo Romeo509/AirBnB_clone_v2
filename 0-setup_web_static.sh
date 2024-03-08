@@ -35,5 +35,5 @@ sudo sed -i '/listen 80 default_server/a location /hbnb_static { alias /data/web
 # Testing configurations
 sudo nginx -t
 
-# Starting nginx server
-sudo service nginx start
+# restarting nginx server
+sudo service nginx restart
