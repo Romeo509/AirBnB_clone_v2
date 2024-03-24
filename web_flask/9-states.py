@@ -29,12 +29,11 @@ def cities_by_states():
         cities.sort(key=lambda city: city.name)
         all_cities[state.id] = cities
 
-
-return render_template(
-    'cities_by_states.html',
-    states=states,
-    all_cities=all_cities
-)
+    return render_template(
+        'cities_by_states.html',
+        states=states,
+        all_cities=all_cities
+    )
 
 
 if __name__ == '__main__':
