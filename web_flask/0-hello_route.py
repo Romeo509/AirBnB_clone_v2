@@ -1,11 +1,15 @@
 #!/usr/bin/python3
+""" Start the fask application """
+
 from flask import Flask
+
 
 app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
 def hello_hbnb():
+    """return Hello HBNB"""
     return "Hello HBNB!"
 
 
