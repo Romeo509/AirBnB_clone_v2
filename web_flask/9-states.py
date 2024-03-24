@@ -14,7 +14,8 @@ def close_session(exception):
 
 @app.route('/cities_by_states', strict_slashes=False)
 def cities_by_states():
-    """Retrieves all states and their cities, sorts them, and renders an HTML page."""
+    """Retrieves all states and
+       their cities, sorts them, and renders an HTML page."""
     states = storage.all('State')
     states.sort(key=lambda state: state.name)
 
@@ -28,7 +29,11 @@ def cities_by_states():
         cities.sort(key=lambda city: city.name)
         all_cities[state.id] = cities
 
-    return render_template('cities_by_states.html', states=states, all_cities=all_cities)
+return render_template(
+    'cities_by_states.html',
+    states=states,
+    all_cities=all_cities
+)
 
 
 if __name__ == '__main__':
