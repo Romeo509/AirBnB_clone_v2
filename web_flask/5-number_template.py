@@ -6,41 +6,47 @@ from flask import Flask, render_template
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
+
 @app.route('/')
-def greet_hbnb():
+def hello_world():
     """ Display a greeting message """
     return 'Hello HBNB!'
 
+
 @app.route('/hbnb')
-def display_hbnb():
+def hello():
     """ Display 'HBNB' """
     return 'HBNB'
 
+
 @app.route('/c/<text>')
-def display_c_text(text):
+def c_text(text):
     """ Display 'C ' followed by the value of text """
     text = text.replace('_', ' ')
     return 'C {}'.format(text)
 
-@app.route('/python/', defaults={'text': 'is cool'})
+
+@app.route('/python/')
 @app.route('/python/<text>')
-def display_python_text(text='is cool'):
+def python_text(text='is cool'):
     """ Display 'Python ' followed by the value of text """
     text = text.replace('_', ' ') if text else 'is cool'
     return 'Python {}'.format(text)
 
+
 @app.route('/number/<int:n>')
-def display_number(n):
+def number_text(n):
     """ Display 'n is a number' if n is an integer """
+    n = str(n)
     return '{} is a number'.format(n)
 
+
 @app.route('/number_template/<int:n>')
-def display_number_template(n):
-    """ Display an HTML page with 'Number: n' if n is an integer """
-    if isinstance(n, int):
-        return render_template('5-number_template.html', number=n)
-    else:
-        return 'Not Found', 404
+def html_num(n):
+    """ Display HTML page with 'Number: n' if n is an integer """
+    n = str(n)
+    return render_template('5-number.html', n=n)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
